@@ -4,3 +4,4 @@ services:
     image: cooler09/ui-pickupvb:latest
     ports:
       - "80:80"
+      - "443:443"
