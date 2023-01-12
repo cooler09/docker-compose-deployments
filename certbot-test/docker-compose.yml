@@ -5,18 +5,17 @@ services:
     ports:
       - 80:80
       - 443:443
-    restart: always
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx.conf:/etc/nginx/conf.d/nginx.conf:ro
       - ./certs:/etc/nginx/certs
     environment:
       - NGINX_HOST=pickupvb.com
-      - NGINX_EMAIL=zacharyjordan82@gmail.com
+      - NGINX_EMAIL=admin@pickupvb.com
   certbot:
     image: certbot/certbot:latest
     volumes:
       - ./certs:/etc/letsencrypt
     environment:
       - DOMAINS=pickupvb.com
-      - EMAIL=zacharyjordan82@gmail.com
-    command: certonly --webroot --webroot-path=/etc/letsencrypt -d pickupvb.com
+      - EMAIL=admin@pickupvb.com
+    command: certonly --webroot --webroot-path=/etc/letsencrypt -d pickupvb.com --non-interactive --agree-tos --email admin@pickupvb.com
